@@ -1,0 +1,10 @@
+{
+  "name": "welcome-to-camp",
+  "version": "1.0.0",
+  "description": "You're doing to camp. Don't die.",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r esm app.js"
+  }
+}
