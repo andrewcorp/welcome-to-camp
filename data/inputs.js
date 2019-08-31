@@ -3,8 +3,9 @@ import rooms from "./rooms"
 const inputs = {
   d: reportDirection,
   h: printInstructions,
-  i: showInventory,
+  // i: showInventory,
   l: reportLocation,
+  o: listObjects,
   e: exit,
   r: roomDescription,
 }
@@ -23,7 +24,15 @@ function roomDescription(){
 }
 
 function showInventory(){
-  return `In your backpack:\n${rooms[0].inventory.map(item => `* ${item}`).join("\n")}`
+  return formatList('In your backpack', rooms[0].inventory);
+}
+
+function listObjects(){
+  return formatList('Nearby objects', rooms[0].objects);
+}
+
+function formatList(intro, items){
+  return `${intro}\n${items.map(item => `* ${item}`).join("\n")}`
 }
 
 function printInstructions(){
@@ -31,9 +40,10 @@ function printInstructions(){
     D: Report your direction
     E: Exit game
     H: Help me
-    I: Inventory
     L: Show current location
+    O: List objects nearby
     R: Describe your surroundings
+    U: Use item
   `)
 }
 

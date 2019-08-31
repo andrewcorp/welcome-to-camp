@@ -1,5 +1,5 @@
 import readline from "readline";
-import {print, error} from "./helpers";
+import {print, error} from "./lib/helpers";
 import inputs from "./data/inputs";
 
 class Game {
@@ -21,7 +21,7 @@ class Game {
     *-----------------------*
 
     Type 'H' for help.
-    
+
     Don't die.
     `);
     this.render();

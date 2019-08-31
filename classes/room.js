@@ -1,4 +1,4 @@
-export default class Room(){
+mexport default class Room(){
   describe(){
     // print description
   }
