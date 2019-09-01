@@ -1,3 +1,4 @@
 import game from "./game";
+import rooms from "./data/rooms"
 
-game.new();
+game.new(rooms.wharf);

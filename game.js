@@ -1,6 +1,21 @@
 import readline from "readline";
 import {print, error} from "./lib/helpers";
-import inputs from "./data/inputs";
+import inputMap from "./data/input_map";
+import Room from "./classes/room";
+import Player from "./classes/player";
+
+const lines = [
+  '*-----------------------*',
+  '|                       |',
+  '|     W E L C O M E     |',
+  '|          T O          |',
+  '|        C A M P        |',
+  '|                       |',
+  '*-----------------------*',
+  '\n',
+  'You\'ve just arrived at camp. Don\'t die.',
+  '\n',
+];
 
 class Game {
 
@@ -8,27 +23,21 @@ class Game {
     input: process.stdin,
     output: process.stderr
   });
+
+  room = null
   
-  new(){
+  new(room){
     this.start();
-    print(`
-    *-----------------------*
-    |                       |
-    |     W E L C O M E     |
-    |          T O          |
-    |        C A M P        |
-    |                       |
-    *-----------------------*
-
-    Type 'H' for help.
-
-    Don't die.
-    `);
+    lines.forEach(l => {
+      print(l);
+    })
+    this.player = new Player();
+    this.room = new Room(room, this.player);
     this.render();
   }
 
   render() {
-    const question = `Choose action: `;
+    const question = `\nChoose action (press 'h' for help): `;
     this.questionInterface.question(question, answer => {
       this.questionInterface.pause();
       this.handleInput(answer);
@@ -39,7 +48,7 @@ class Game {
 
   handleInput(input) {
     const normalisedInput = input.trim().toLowerCase();
-    const mappedInput = inputs[normalisedInput];
+    const mappedInput = inputMap(this)[normalisedInput];
     if (typeof mappedInput == 'function')  {
       print(mappedInput());
       this.questionInterface.resume();
