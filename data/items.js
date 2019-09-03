@@ -23,6 +23,15 @@ const items = {
   },
   stick: {
     friendlyName: "A stick"
+  },
+  fishing_rod: {
+    friendlyName: "An old fishing rod"
+  },
+  empty_beer_can: {
+    friendlyName: "A crusty old beer can"
+  },
+  lantern: {
+    friendlyName: "An old gas lantern"
   }
 }
 

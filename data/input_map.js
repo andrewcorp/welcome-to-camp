@@ -9,7 +9,7 @@ const inputMap = (self) => {
     h: printInstructions,
     l: self.player.turnLeft,
     o: self.room.printItems,
-    p: reportLocation,
+    p: self.room.getLocation,
     r: self.player.turnRight,
     s: self.room.describe,
     w: self.room.enter,
@@ -29,22 +29,24 @@ function showInventory(){
   return formatList('In your backpack', rooms[0].inventory);
 }
 
-function printInstructions(){
-  return (`
-    A: Action (talk, attack) // NOT IMPLEMENTED
-    D: Report your direction
-    E: Exit game
-    H: Help me
-    I: Inventory // NOT IMPLEMENTED
-    L: Turn left
-    O: List objects nearby
-    P: Current position
-    R: Turn right
-    S: Describe your surroundings
-    U: Use item // NOT IMPLEMENTED
-    W: Walk
-  `)
-}
+const instructions = [
+  { command: "A", description: "Action (talk, attack) // NOT IMPLEMENTED" },
+  { command: "D", description: "Report your direction" },
+  { command: "E", description: "Exit game" },
+  { command: "H", description: "Help me" },
+  { command: "I", description: "Inventory // NOT IMPLEMENTED" },
+  { command: "L", description: "Turn left" },
+  { command: "O", description: "List objects nearby" },
+  { command: "P", description: "Current position" },
+  { command: "R", description: "Turn right" },
+  { command: "S", description: "Describe your surroundings" },
+  { command: "U", description: "Use item // NOT IMPLEMENTED" },
+  { command: "W", description: "Walk" },
+]
+
+const printInstructions = () => {
+  return instructions.map(i => i.command + ": " + i.description).join("\n");
+};
 
 function exit(){
   print('The coward\'s way out.')

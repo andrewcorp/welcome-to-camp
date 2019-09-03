@@ -19,6 +19,7 @@ export default class Room {
     this.printItems = this.printItems.bind(this);
     this.update = this.update.bind(this);
     this.enter = this.enter.bind(this);
+    this.getLocation = this.getLocation.bind(this);
     print(room.introduction) // MOVE THIS THING IT IS BAD
   }
 
@@ -29,6 +30,7 @@ export default class Room {
       print(room.introduction); // MOVE THIS THING IT IS BAD
       this.player.die();
     }
+    this.friendlyName = room.friendly_name;
     this.description = room.description;
     this.introduction = room.introduction;
     this.adjoiningRooms = room.adjoining_rooms;
@@ -39,6 +41,10 @@ export default class Room {
     const nextRoom = this.adjoiningRooms[this.player.getOrientation()];
     this.update(rooms[nextRoom]);
     return this.introduction // THIS IS JUST FOR PRINTING. NEED A PRINTER CLASS
+  }
+
+  getLocation(){
+    return this.friendlyName;
   }
 
   describe(){

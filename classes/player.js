@@ -13,7 +13,7 @@ export default class Player {
 
   getOrientation(){
     // Return orientation index and use to enter an adjoining room
-    return getOrientationIndex(this.orientation);
+    return ORIENTATIONS.indexOf(this.orientation);
   }
 
   setOrientation(orientation){
@@ -25,7 +25,7 @@ export default class Player {
     if(direction === "left"){
       index = index <= 0 ? ORIENTATIONS.length - 1 : this.getOrientation() - 1
     } else {
-      index = index >= ORIENTATIONS.length ? 0 : this.getOrientation() + 1
+      index = index >= ORIENTATIONS.length - 1 ? 0 : this.getOrientation() + 1
     }
     this.setOrientation(ORIENTATIONS[index]);
   }
@@ -47,7 +47,5 @@ export default class Player {
 }
 
 // TIDY THIS UP
-
 const ORIENTATIONS =  ["north", "east", "south", "west"];
 
-const getOrientationIndex = (orientation) => ORIENTATIONS.indexOf(orientation);
